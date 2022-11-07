@@ -1,7 +1,7 @@
 
 import java.util.Random;
 
-public class QuizScaffolding extends CreateQuestion {
+public class SquareQuestionExample extends CreateQuestion {
 
     private Random rnd = new Random();
 
@@ -14,23 +14,35 @@ public class QuizScaffolding extends CreateQuestion {
         return qText;
     }
 
+    public String createGeneralFeedback() {
+        return "Some generic feedback";
+    }
+
+    public String createCorrectFeedback() {
+        return "Some feedback for the correct answer";
+    }
+
+    public String createIncorrectFeedback() {
+        return "Some general feedback for incorrect answers";
+    }
+
     public void createDataSeeds() {
         IntQuizData val = IntQuizData.makeIntQuizData(rnd.nextInt(15));
         addSeedItem("number", val);
     }
 
     public int createQuestionPoints() {
-        return 1;
+        return 5;
     }
 
     public Answer createCorrectAnswer() {
         int seedVal = (int)getSeedItem("number").get();
-        return Answer.MakeCorrectAnswer( IntQuizData.makeIntQuizData(seedVal * seedVal),
+        return Answer.MakeCorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(seedVal * seedVal),
                 "some correct feedback");
     }
 
     public Answer createIncorrectAnswer() {
-        return Answer.MakeIncorrectAnswer( IntQuizData.makeIntQuizData(rnd.nextInt(20)),
+        return Answer.MakeIncorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(rnd.nextInt(20)),
                 "some incorrect feedback");
     }
 }

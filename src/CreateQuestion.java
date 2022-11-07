@@ -10,19 +10,36 @@ public abstract class CreateQuestion {
     public abstract String createQuestionTitle();
     public abstract String createQuestionText();
 
-    public abstract int createQuestionPoints();
-
     public abstract void createDataSeeds();
 
     public abstract Answer createCorrectAnswer();
 
     public abstract Answer createIncorrectAnswer();
 
-    public boolean createMcqAnswerSet(final int numAnswers) {
+    public int createQuestionPoints() {
+        return 1;
+    }
+
+    public String createGeneralFeedback() {
+        return null;
+    }
+
+    public String createCorrectFeedback() {
+        return null;
+    }
+
+    public String createIncorrectFeedback() {
+        return null;
+    }
+
+    public final boolean createMcqAnswerSet(final int numAnswers) {
         createDataSeeds();
         question.addQuestionTitle(createQuestionTitle());
         question.addQuestionText(createQuestionText());
         question.addQuestionPoints(createQuestionPoints());
+        question.addGeneralFeedback(createGeneralFeedback());
+        question.addCorrectFeedback(createCorrectFeedback());
+        question.addIncorrectAnswerFeedback(createIncorrectFeedback());
         if (!question.addAnswer(createCorrectAnswer())) {
             return false;
         }
@@ -36,24 +53,24 @@ public abstract class CreateQuestion {
         return true;
     }
 
-    public void addSeedItem(final String key, final QuizDataInterface val) {
+    public final void addSeedItem(final String key, final QuizDataInterface val) {
         seedList.putIfAbsent(key, val);
     }
 
-    public QuizDataInterface getSeedItem(final String key) {
+    public final QuizDataInterface getSeedItem(final String key) {
         return seedList.getOrDefault(key, null);
     }
 
-    public int getQNum() {
+    public final int getQNum() {
         return qNum;
     }
 
-    public void setQNum(final int num) {
+    public final void setQNum(final int num) {
         qNum = num;
     }
 
     @Override
-    public String toString() {
+    public final String toString() {
         List<Map.Entry<String, Answer>> list = randomize();
         StringBuilder builder = new StringBuilder(question.getQuestionTitle());
         builder.append("\n");
@@ -70,10 +87,19 @@ public abstract class CreateQuestion {
         return builder.toString();
     }
 
-    public String toText2Qti() {
+    public final String toText2Qti() {
         StringBuilder builder = new StringBuilder("Title: " + question.getQuestionTitle() + "\n");
         builder.append("Points: " + question.getQuestionPoints() + "\n");
         builder.append(qNum + ". " + question.getQuestionText() + "\n");
+        if (question.getGeneralFeedback() != null) {
+            builder.append("... " + question.getGeneralFeedback() + "\n");
+        }
+        if (question.getCorrectAnswerFeedback() != null) {
+            builder.append("+ " + question.getCorrectAnswerFeedback() + "\n");
+        }
+        if (question.getIncorrectAnswerFeedback() != null) {
+            builder.append("- " + question.getIncorrectAnswerFeedback() + "\n");
+        }
         List<Map.Entry<String, Answer>> list = randomize();
         char qItem = 'a';
         for(Map.Entry<String, Answer> ans: list) {
@@ -82,6 +108,9 @@ public abstract class CreateQuestion {
             }
             builder.append(qItem + ") " + ans.getValue().getAnswer().valueOf());
             builder.append("\n");
+            if (ans.getValue().getFeedback() != null) {
+                builder.append("... " + ans.getValue().getFeedback() + "\n");
+            }
             qItem++;
         }
         return builder.toString();

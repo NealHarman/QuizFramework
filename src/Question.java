@@ -4,6 +4,10 @@ public class Question {
     private String questionTitle;
     private String questionText;
 
+    private String generalFeedback;
+    private String correctAnswerFeedback;
+    private String incorrectAnswerFeedback;
+
     private int points;
     private final HashMap<String,Answer> answerList;
 
@@ -23,6 +27,18 @@ public class Question {
 
     public void addQuestionPoints(final int points) {
         this.points = points;
+    }
+
+    public void addGeneralFeedback(final String feedback) {
+        this.generalFeedback = feedback;
+    }
+
+    public void addCorrectFeedback(final String feedback) {
+        this.correctAnswerFeedback = feedback;
+    }
+
+    public void addIncorrectAnswerFeedback(final String feedback) {
+        this.incorrectAnswerFeedback = feedback;
     }
 
     public boolean addAnswer(final Answer answer) {
@@ -48,6 +64,19 @@ public class Question {
 
     public HashMap<String, Answer> getAnswerList() {
         return answerList;
+    }
+
+
+    public String getGeneralFeedback() {
+        return generalFeedback;
+    }
+
+    public String getCorrectAnswerFeedback() {
+        return correctAnswerFeedback;
+    }
+
+    public String getIncorrectAnswerFeedback() {
+        return incorrectAnswerFeedback;
     }
 
     public QuizDataInterface getQuestionDataItem(final String key) {
