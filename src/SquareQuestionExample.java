@@ -37,12 +37,12 @@ public class SquareQuestionExample extends CreateQuestion {
 
     public Answer createCorrectAnswer() {
         int seedVal = (int)getSeedItem("number").get();
-        return Answer.MakeCorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(seedVal * seedVal),
+        return Answer.makeCorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(seedVal * seedVal),
                 "some correct feedback");
     }
 
     public Answer createIncorrectAnswer() {
-        return Answer.MakeIncorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(rnd.nextInt(20)),
+        return Answer.makeIncorrectAnswerWithFeedback( IntQuizData.makeIntQuizData(rnd.nextInt(20)),
                 "some incorrect feedback");
     }
 }

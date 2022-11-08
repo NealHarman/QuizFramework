@@ -9,7 +9,7 @@ public class Question {
     private String incorrectAnswerFeedback;
 
     private int points;
-    private final HashMap<String,Answer> answerList;
+    private final HashMap<String, Answer> answerList;
 
     private final SeedList questionData;
 
@@ -83,7 +83,8 @@ public class Question {
             return questionData.getSeedItem(key);
     }
 
-    public boolean setQuestionDataItem(final String key, final QuizDataInterface value) {
+    public boolean setQuestionDataItem(final String key,
+                                       final QuizDataInterface value) {
         if (questionData.containsSeedKey(key)) {
             return false;
         } else {

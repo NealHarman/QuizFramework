@@ -1,7 +1,7 @@
-public class DoubleQuizData implements QuizDataInterface<Double> {
+public final class DoubleQuizData implements QuizDataInterface<Double> {
     private final double val;
 
-    private DoubleQuizData(double val) {
+    private DoubleQuizData(final double val) {
         this.val = val;
     }
 

@@ -1,9 +1,9 @@
-import java.util.*;
+import java.util.HashMap;
 
 public abstract class CreateQuestion {
 
     private Question question = new Question();
-    protected HashMap<String, QuizDataInterface> seedList = new HashMap<>();
+    private HashMap<String, QuizDataInterface> seedList = new HashMap<>();
 
     private int qNum;
 
@@ -45,9 +45,9 @@ public abstract class CreateQuestion {
         }
 
         int incorrectCount = 0;
-        while (incorrectCount < numAnswers){
+        while (incorrectCount < numAnswers) {
             if (question.addAnswer(createIncorrectAnswer())) {
-                incorrectCount ++;
+                incorrectCount++;
             }
         }
         return true;
@@ -71,15 +71,15 @@ public abstract class CreateQuestion {
 
     @Override
     public final String toString() {
-        List<Map.Entry<String, Answer>> list = randomize();
+        java.util.List<java.util.Map.Entry<String, Answer>> list = randomize();
         StringBuilder builder = new StringBuilder(question.getQuestionTitle());
         builder.append("\n");
         builder.append(question.getQuestionText());
         builder.append("\n");
         builder.append("Points: " + question.getQuestionPoints() + "\n");
-        for(Map.Entry<String, Answer> ans: list) {
+        for (java.util.Map.Entry<String, Answer> ans: list) {
             builder.append(ans.getValue().getAnswer().valueOf());
-            if(ans.getValue().isCorrect()) {
+            if (ans.getValue().isCorrect()) {
                 builder.append(" *");
             }
             builder.append("\n");
@@ -100,10 +100,10 @@ public abstract class CreateQuestion {
         if (question.getIncorrectAnswerFeedback() != null) {
             builder.append("- " + question.getIncorrectAnswerFeedback() + "\n");
         }
-        List<Map.Entry<String, Answer>> list = randomize();
+        java.util.List<java.util.Map.Entry<String, Answer>> list = randomize();
         char qItem = 'a';
-        for(Map.Entry<String, Answer> ans: list) {
-            if(ans.getValue().isCorrect()) {
+        for (java.util.Map.Entry<String, Answer> ans: list) {
+            if (ans.getValue().isCorrect()) {
                 builder.append("*");
             }
             builder.append(qItem + ") " + ans.getValue().getAnswer().valueOf());
@@ -116,10 +116,10 @@ public abstract class CreateQuestion {
         return builder.toString();
     }
 
-    private List<Map.Entry<String, Answer>> randomize() {
-        List<Map.Entry<String,Answer>> list =
-                new ArrayList<>(question.getAnswerList().entrySet());
-        Collections.shuffle(list);
+    private java.util.List<java.util.Map.Entry<String, Answer>> randomize() {
+        java.util.List<java.util.Map.Entry<String, Answer>> list =
+                new java.util.ArrayList<>(question.getAnswerList().entrySet());
+        java.util.Collections.shuffle(list);
         return list;
     }
 }

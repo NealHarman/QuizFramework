@@ -1,7 +1,7 @@
-public class StringQuizData implements QuizDataInterface<String> {
+public final class StringQuizData implements QuizDataInterface<String> {
     private final String val;
 
-    private StringQuizData(String val) {
+    private StringQuizData(final String val) {
         this.val = val;
     }
 

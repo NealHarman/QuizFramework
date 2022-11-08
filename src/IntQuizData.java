@@ -1,7 +1,7 @@
-public class IntQuizData implements QuizDataInterface<Integer> {
+public final class IntQuizData implements QuizDataInterface<Integer> {
     private final int val;
 
-    private IntQuizData(int val) {
+    private IntQuizData(final int val) {
         this.val = val;
     }
 

@@ -16,23 +16,26 @@ public class Answer {
         return isCorrect;
     }
 
-    public static Answer MakeCorrectAnswer(final QuizDataInterface answer) {
+    public static Answer makeCorrectAnswer(final QuizDataInterface answer) {
         return new Answer(answer, null, true);
     }
 
-    public static Answer MakeIncorrectAnswer(final QuizDataInterface answer) {
+    public static Answer makeIncorrectAnswer(final QuizDataInterface answer) {
         return new Answer(answer, null, false);
     }
 
-    public static Answer MakeCorrectAnswerWithFeedback(final QuizDataInterface answer, final String feedback) {
+    public static Answer makeCorrectAnswerWithFeedback(final QuizDataInterface answer,
+                                                       final String feedback) {
         return new Answer(answer, feedback, true);
     }
 
-    public static Answer MakeIncorrectAnswerWithFeedback(final QuizDataInterface answer, final String feedback) {
+    public static Answer makeIncorrectAnswerWithFeedback(final QuizDataInterface answer,
+                                                         final String feedback) {
         return new Answer(answer, feedback, false);
     }
 
-    public Answer(QuizDataInterface answer, String feedback, boolean isCorrect) {
+    public Answer(final QuizDataInterface answer, final String feedback,
+                  final boolean isCorrect) {
         this.answer = answer;
         this.isCorrect = isCorrect;
         this.feedback = feedback;
