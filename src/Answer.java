@@ -1,10 +1,10 @@
 public class Answer {
-    private final QuizDataInterface answer;
+    private final QuizData answer;
     private final boolean isCorrect;
 
     private final String feedback;
 
-    public QuizDataInterface getAnswer() {
+    public QuizData getAnswer() {
         return answer;
     }
 
@@ -16,25 +16,25 @@ public class Answer {
         return isCorrect;
     }
 
-    public static Answer makeCorrectAnswer(final QuizDataInterface answer) {
+    public static Answer makeCorrectAnswer(final QuizData answer) {
         return new Answer(answer, null, true);
     }
 
-    public static Answer makeIncorrectAnswer(final QuizDataInterface answer) {
+    public static Answer makeIncorrectAnswer(final QuizData answer) {
         return new Answer(answer, null, false);
     }
 
-    public static Answer makeCorrectAnswerWithFeedback(final QuizDataInterface answer,
+    public static Answer makeCorrectAnswerWithFeedback(final QuizData answer,
                                                        final String feedback) {
         return new Answer(answer, feedback, true);
     }
 
-    public static Answer makeIncorrectAnswerWithFeedback(final QuizDataInterface answer,
+    public static Answer makeIncorrectAnswerWithFeedback(final QuizData answer,
                                                          final String feedback) {
         return new Answer(answer, feedback, false);
     }
 
-    public Answer(final QuizDataInterface answer, final String feedback,
+    public Answer(final QuizData answer, final String feedback,
                   final boolean isCorrect) {
         this.answer = answer;
         this.isCorrect = isCorrect;

@@ -3,7 +3,7 @@ import java.util.HashMap;
 public abstract class CreateQuestion {
 
     private Question question = new Question();
-    private HashMap<String, QuizDataInterface> seedList = new HashMap<>();
+    private HashMap<String, QuizData> seedList = new HashMap<>();
 
     private int qNum;
 
@@ -36,7 +36,7 @@ public abstract class CreateQuestion {
         createDataSeeds();
         question.addQuestionTitle(createQuestionTitle());
         question.addQuestionText(createQuestionText());
-        question.addQuestionPoints(createQuestionPoints());
+        question.addQuestionPoints(createQuestionPoints() < 1 ? 1 : createQuestionPoints());
         question.addGeneralFeedback(createGeneralFeedback());
         question.addCorrectFeedback(createCorrectFeedback());
         question.addIncorrectAnswerFeedback(createIncorrectFeedback());
@@ -53,11 +53,11 @@ public abstract class CreateQuestion {
         return true;
     }
 
-    public final void addSeedItem(final String key, final QuizDataInterface val) {
+    public final void addQuizDataItem(final String key, final QuizData val) {
         seedList.putIfAbsent(key, val);
     }
 
-    public final QuizDataInterface getSeedItem(final String key) {
+    public final QuizData getQuizDataItem(final String key) {
         return seedList.getOrDefault(key, null);
     }
 

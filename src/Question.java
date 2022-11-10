@@ -79,12 +79,12 @@ public class Question {
         return incorrectAnswerFeedback;
     }
 
-    public QuizDataInterface getQuestionDataItem(final String key) {
+    public QuizData getQuestionDataItem(final String key) {
             return questionData.getSeedItem(key);
     }
 
     public boolean setQuestionDataItem(final String key,
-                                       final QuizDataInterface value) {
+                                       final QuizData value) {
         if (questionData.containsSeedKey(key)) {
             return false;
         } else {

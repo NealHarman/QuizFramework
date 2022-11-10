@@ -1,12 +1,22 @@
 public class Main {
     public static void main(String[] args) {
-        CreateQuestion scaff = new SquareQuestionExample();
-        scaff.setQNum(1);
-        scaff.createMcqAnswerSet(5);
-        System.out.println(scaff);
+        CreateQuestion squareExample = new SquareQuestionExample();
+        squareExample.setQNum(1);
+        squareExample.createMcqAnswerSet(5);
 
-        System.out.println();
+        System.out.println(squareExample.toText2Qti());
 
-        System.out.println(scaff.toText2Qti());
+        CreateQuestion multExample = new MultQuestionExample();
+        multExample.setQNum(squareExample.getQNum() + 1);
+        multExample.createMcqAnswerSet(5);
+
+        System.out.println(multExample.toText2Qti());
+
+        CreateQuestion checkQuestion = new CheckSumValueQuestion();
+        checkQuestion.setQNum(multExample.getQNum() + 1);
+        checkQuestion.createMcqAnswerSet(5);
+
+        System.out.println(checkQuestion.toText2Qti());
+
     }
 }
